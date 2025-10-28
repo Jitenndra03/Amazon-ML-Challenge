@@ -38,6 +38,7 @@ A feature-level fusion of structured manual features, SBERT-based text embedding
 ## 3. Model Architecture
 
 ### 3.1 Architecture Overview
+```
 
               ┌───────────────────────────────────────────────┐
               │                 RAW INPUT DATA                │
@@ -93,7 +94,7 @@ A feature-level fusion of structured manual features, SBERT-based text embedding
           │                        FINAL PREDICTION                       │
           │                     (submission.csv)                          │
           └───────────────────────────────────────────────────────────────┘
-
+```
 
 
 ### 3.2 Model Components
