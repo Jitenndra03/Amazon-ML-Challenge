@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Price Predictor</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Price Predictor</h1>
+        <p class="subtitle">Paste your product details to get an instant price estimate.</p>
+
+        <div class="form-group">
+            <label for="productDetails">Product Details (Catalog Content)</label>
+            <textarea 
+                id="productDetails" 
+                placeholder="Item Name: Salerno Cookies, The Original Butter Cookies, 8 Ounce (Pack of 4)..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Product Picture</label>
+            <div class="file-input-wrapper">
+                <input type="file" id="productImage" accept="image/*">
+                <label for="productImage" class="file-label">Choose File</label>
+                <span class="file-name" id="fileName">No file chosen</span>
+            </div>
+        </div>
+
+        <button class="predict-btn" onclick="predictPrice()">Predict Price</button>
+
+        <div class="result" id="result">
+            <h3>Estimated Price:</h3>
+            <p id="priceValue">$0.00</p>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('productImage');
+        const fileName = document.getElementById('fileName');
+
+        fileInput.addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                fileName.textContent = e.target.files[0].name;
+            } else {
+                fileName.textContent = 'No file chosen';
+            }
+        });
+
+        function predictPrice() {
+            const productDetails = document.getElementById('productDetails').value;
+            const result = document.getElementById('result');
+            const priceValue = document.getElementById('priceValue');
+
+            if (!productDetails.trim()) {
+                alert('Please enter product details');
+                return;
+            }
+
+            // Simulate price prediction (random price between $5 and $50)
+            const estimatedPrice = (Math.random() * 45 + 5).toFixed(2);
+            
+            priceValue.textContent = `$${estimatedPrice}`;
+            result.classList.add('show');
+
+            // Smooth scroll to result
+            setTimeout(() => {
+                result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+    </script>
+</body>
+</html>
